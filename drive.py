@@ -20,6 +20,7 @@ sio = socketio.Server()
 app = Flask(__name__)
 model = None
 prev_image_array = None
+from utils import preprocess_img
 
 
 @sio.on('telemetry')
@@ -34,7 +35,7 @@ def telemetry(sid, data):
         # The current image from the center camera of the car
         imgString = data["image"]
         image = Image.open(BytesIO(base64.b64decode(imgString)))
-        image_array = np.asarray(image)
+        image_array = preprocess_img(np.asarray(image))
         steering_angle = float(model.predict(image_array[None, :, :, :], batch_size=1))
         min_speed = 8
         max_speed = 10
