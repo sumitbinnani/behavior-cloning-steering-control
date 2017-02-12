@@ -1,6 +1,6 @@
 # Behavioral Cloning
 ---
-This project was done as part of Udacity's Self-Driving Car Nanodegree Program.
+This project was done as part of Udacity's Self-Driving Car Nanodegree Program. The model performance has been tested on for resolution of **320x240**, and graphic quality selected as 'fastest'.
 
 
 To see the model performance click the following links:
@@ -108,7 +108,7 @@ Applying image transformation techniques to the existing data can be used to inc
 
 Following techniques were used for image augmentations:
 
-* ##### Flipping Image
+* #### Flipping Image
 	Mirroring the image and reversing the steering angle gives equally valid image for training. In the image generator, 50% of the images were flipped.
 
 	![Flipped Images][flipped]
@@ -118,7 +118,7 @@ Following techniques were used for image augmentations:
 
 	![Corrected Left and Right Camera Images][left_center_right]
 
-* ##### Applying Horizontal and Vertical Shifts
+* #### Applying Horizontal and Vertical Shifts
 	The camera images were horizontally/vertically shifted to simulate the effect of car being at different positions on the road, and an offset corresponding to the shift was added to the steering angle ([line 58 of utils.py](https://github.com/sumitbinnani/CarND-Behavioral-Cloning-P3/blob/master/utils.py#L58)).
 
 	![Translated Image][translated]
@@ -136,3 +136,4 @@ The model was trained using images obtained from track 1 alone and it worked wit
 * The training data can be augmented for brightness and hue jitter.
 * Random patch of black tiles can be overlayed on the training data to simulate shadow and make data less prone to the effect of the same.
 * The image cropping can be done as part of model to utilize CUDA acceleration
+* The model does not perform well with higher resolution even if the images are resized to current input size during preprocessing (mostly because of the additional lag due to extra preprocessing or the image resizing requires particular type of interpolation strategy so as to meet current input specifications).
